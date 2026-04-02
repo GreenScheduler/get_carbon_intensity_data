@@ -19,7 +19,7 @@ def download_data(location='OX1', out_path=Path('.')):
     result_frame.index = result_frame.datetime
     result_frame.to_csv(path_or_buf=out_path/filename, columns=('value',))
 
-def main():
+def main(basepath=Path('.')):
     """
     Download data and save in to csv
     """
@@ -33,11 +33,13 @@ def main():
     for name, postcode in zip(location_names, location_postcodes):
         name = name.replace(' ', '_')
         name = name.replace('&', 'and')
-        data_path = Path('./'+name)
+        data_path = basepath/name
         data_path.mkdir(exist_ok=True)
         download_data(location=postcode, out_path=data_path)
         time.sleep(5)
+    print(f"Job finished at {time.time()}")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(Path(sys.argv[1]))
