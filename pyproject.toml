@@ -1,0 +1,10 @@
+[project]
+name = "get-carbon-intensity-data"
+version = "0.1.0"
+description = "A tool to archive carbon intensity predictions"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "climate-aware-task-scheduler>=1.1.0",
+    "pandas>=3.0.2",
+]
